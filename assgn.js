@@ -3,12 +3,10 @@ const path = require('path');
 
 const jsonFilePath = path.join(__dirname, 'polynomial_data.json');
 
-// Function to decode a value from a given base
 function decodeValue(value, base) {
     return parseInt(value, base);
 }
 
-// Function to perform Lagrange interpolation
 function lagrangeInterpolation(points) {
     const k = points.length;
     let result = 0;
@@ -29,7 +27,6 @@ function lagrangeInterpolation(points) {
     return result;
 }
 
-// Function to extract points from the input object
 function extractPointsFromInput(input) {
     const points = [];
     const { keys } = input;
@@ -48,7 +45,6 @@ function extractPointsFromInput(input) {
     return points;
 }
 
-// Function to calculate the secret using Lagrange interpolation
 function calculateSecret(input) {
     const points = extractPointsFromInput(input);
     const { k } = input.keys;
@@ -60,7 +56,6 @@ function calculateSecret(input) {
     return lagrangeInterpolation(points.slice(0, k));
 }
 
-// Read the JSON file and process the data
 fs.readFile(jsonFilePath, 'utf8', (err, data) => {
     if (err) {
         console.error('Error reading the JSON file:', err);
